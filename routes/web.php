@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
+Route::post('/', 'Auth\LoginController@login')->middleware('cekstatus');
+Route::get('/', 'Auth\LoginController@login')->middleware('cekstatus');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
@@ -26,3 +29,6 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+//Route admin
+Route::get('/rt', 'DataRtController@index')->name('rt');

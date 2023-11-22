@@ -18,11 +18,20 @@ class CekStatus
     public function handle(Request $request, Closure $next)
     {
         $user = \App\Models\User::where('username', $request->username)->first();
-        if ($user->status == 'admin') {
-            return redirect('admin/dashboard');
-        } elseif ($user->status == 'mahasiswa') {
-            return redirect('mahasiswa/dashboard');
+
+        // Check if user exists
+        if ($user) {
+            if ($user->role == 'admin') {
+                return redirect('admin/dashboard');
+            } elseif ($user->role == 'warga') {
+                return redirect('warga/dashboard');
+            } elseif ($user->role == 'satpam') {
+                return redirect('satpam/dashboard');
+            }
         }
+
+        // Handle the case where the user is not found or has no role
+        // You might want to customize this part based on your application logic
         return $next($request);
     }
 }

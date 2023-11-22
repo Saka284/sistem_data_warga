@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\RT;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $RT = RT::get();
+        return view('home', ['RT' => $RT]);
+
         $users = User::count();
 
         $widget = [
