@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RT;
+use App\Models\Keluarga;
+use App\Models\KK;
 
 class HomeController extends Controller
 {
@@ -27,7 +29,14 @@ class HomeController extends Controller
     {
 
         $RT = RT::get();
-        return view('home', ['RT' => $RT]);
+        $KK = KK::get();
+        $K = Keluarga::get();
+
+        return view('home', [
+            'RT' => $RT,
+            'KK' => $KK,
+            'K' => $K,
+        ]);
 
         $users = User::count();
 

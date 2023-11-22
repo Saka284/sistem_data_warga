@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+
 
 
 /*
@@ -18,8 +20,8 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
-Route::post('/', 'Auth\LoginController@login')->middleware('cekstatus');
-Route::get('/', 'Auth\LoginController@login')->middleware('cekstatus');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/', [LoginController::class, 'login']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -30,5 +32,11 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+
+
 //Route admin
 Route::get('/rt', 'DataRtController@index')->name('rt');
+Route::get('/kk', 'DataKkController@index')->name('kk');
+
+//routing tambah rt
+Route::post('/tambah/rt', 'DataRtController@tambahRts');

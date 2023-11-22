@@ -1,10 +1,10 @@
-@extends('layouts.admin')
 @section('main-content')
-    
+@extends('layouts.admin')
+
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold">{{ __('Data RT') }}</h1>
+    <button class="btn btn-sm btn-primary my-2" onclick="tambahRt()">Tambah RT</button>
 
-    
     @if (session('success'))
         <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
             {{ session('success') }}

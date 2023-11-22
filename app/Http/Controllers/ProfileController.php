@@ -23,28 +23,28 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'last_name' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
+            'username' => 'nullable|string|max:255',
             'current_password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|max:12|required_with:current_password',
             'password_confirmation' => 'nullable|min:8|max:12|required_with:new_password|same:new_password'
         ]);
 
-
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
-        $user->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
+        $user->username = $request->input('username');
 
         if (!is_null($request->input('current_password'))) {
             if (Hash::check($request->input('current_password'), $user->password)) {
-                $user->password = $request->input('new_password');
+                $user->password = Hash::make($request->input('new_password'));
             } else {
-                return redirect()->back()->withInput();
+                return redirect()->back()->withInput()->withErrors(['current_password' => 'The current password is incorrect.']);
             }
         }
 
         $user->save();
+
+        // Re-authenticate the user with the updated password
+        Auth::loginUsingId($user->id);
 
         return redirect()->route('profile')->withSuccess('Profile updated successfully.');
     }
