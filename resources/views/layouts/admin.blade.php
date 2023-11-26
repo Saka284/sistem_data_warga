@@ -86,13 +86,23 @@
             </a>
         </li>
         @endif
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
+        @if(auth()->user() && (auth()->user()->role == 'warga'))
+        <li class="nav-item {{ Nav::isRoute('pengaduan') }}">
+            <a class="nav-link" href="{{ route('pengaduan') }}">
                 <i class="fas fa-fw fa-comment"></i>
-                <span>{{ __('Aduan warga') }}</span>
+                <span>{{ __('Pengaduan') }}</span>
             </a>
         </li>
-
+        @endif
+        @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
+        <!-- Nav Item - Pengaduan (for admin) -->
+        <li class="nav-item {{ Nav::isRoute('pengaduan_admin') }}">
+            <a class="nav-link" href="{{ route('pengaduan_admin') }}">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>{{ __('Aduan Warga') }}</span>
+            </a>
+        </li>
+        @endif
         @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">

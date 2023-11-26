@@ -127,4 +127,13 @@ class KeluargaController extends Controller
             return back()->withErrors(['errors' => 'Ups!, Ada masalah ketika menghapus data ini!']);
         }
     }
+
+    public function showKeluargaDetail($id)
+    {
+
+        $k = Keluarga::find($id);
+
+        // Return the RT detail view with the RT data
+        return view('detail.detail_keluarga', compact('k'));
+    }
 }

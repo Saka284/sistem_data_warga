@@ -10,5 +10,16 @@ class Keluarga extends Model
     use HasFactory;
     protected $table = 'keluargas';
 
-    
+    protected $fillable = [
+        'nama_lengkap',
+        'no_nik',
+        'ttl',
+        'jenis_kelamin',
+        'golongan_darah',
+        'agama',
+        'status_perkawinan',
+        'pekerjaan',
+        'kewarganegaraan',
+        'kepala_keluarga_id',
+    ];
 }
