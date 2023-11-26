@@ -175,7 +175,7 @@ function editDataKeluarga(dataid) {
 	var namaLengkap = $("input[name=nama_lengkap]");
 	var kepalaKeluarga = $("select[name=kepala_keluarga_id]");
 	var noNik = $("input[name=no_nik]");
-	var ttl = $("input[name=ttl]");
+	var ttl = $("input[name=ttl]");	
 	var jenisKelamin = $("select[name=jenis_kelamin]");
 	var golonganDarah = $("select[name=golongan_darah]");
 	var agama = $("select[name=agama]");
@@ -185,7 +185,7 @@ function editDataKeluarga(dataid) {
 	var data_id = $("input[name=id]");
 
 	modal.iziModal('startLoading');
-	$.post('data/k', { id: id }, function (response) {
+	$.get('data/k', { id: id }, function (response) {
 		modal.iziModal('stopLoading');
 
 		namaLengkap.val(response[0].nama_lengkap);

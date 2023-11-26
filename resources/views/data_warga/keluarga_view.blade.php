@@ -42,9 +42,7 @@
                                 <th>
                                     Nama Lengkap
                                 </th>
-                                <th>
-                                    No NIK
-                                </th>
+                         
                                 <th>
                                     Kepala Keluarga
                                 </th>
@@ -53,21 +51,12 @@
                                 </th>
                                 <th>
                                     Jenis Kelamin
-                                </th>
-                                <th>
-                                    Gol-darah
-                                </th>
+                                </th> 
                                 <th>
                                     Agama
                                 </th>
                                 <th>
                                     Status Perkawinan
-                                </th>
-                                <th>
-                                    Pekerjaan
-                                </th>
-                                <th>
-                                    Kewarganegaraan
                                 </th>
                                 <th>
                                     Aksi Data
@@ -81,9 +70,6 @@
                                     {{$dataWarga->nama_lengkap}}
                                 </td>
                                 <td>
-                                    {{$dataWarga->no_nik}}
-                                </td>
-                                <td>
                                     {{App\Models\KK::where('id',$dataWarga->kepala_keluarga_id)->first()->nama_lengkap}}
                                 </td>
                                 <td>
@@ -93,25 +79,18 @@
                                     {{$dataWarga->jenis_kelamin}}
                                 </td>
                                 <td>
-                                    {{$dataWarga->golongan_darah}}
-                                </td>
-                                <td>
                                     {{$dataWarga->agama}}
                                 </td>
                                 <td>
                                     {{$dataWarga->status_perkawinan}}
                                 </td>
                                 <td>
-                                    {{$dataWarga->pekerjaan}}
-                                </td>
-                                <td>
-                                    {{$dataWarga->kewarganegaraan}}
-                                </td>
-                                <td>
-                                    <div class="btn-group w-100">
+                                    <div class="btn-group d-flex justify-content-center">
                                         <button class="btn btn-sm btn-primary" onclick="editDataKeluarga(this)" data-id="{{$dataWarga->id}}">Edit</button>
-
+                                        <span style="margin-right: 5px;"></span>
                                         <button class="btn btn-sm btn-danger" onclick="hapusData(this)" data-url="{{url('hapus/k/'.$dataWarga->id)}}">Hapus</button>
+                                        <span style="margin-right: 5px;"></span>                                        
+                                        <a href="{{ route('k.detail', ['id' => $dataWarga->id]) }}" class="btn btn-sm btn-info">Detail</a>
                                     </div>
                                 </td>
                             </tr>

@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DataKkController;
 use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\KeluargaController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\TanggapanController;
 use App\Models\Keluarga;
 use App\Models\Pengumuman;
 
@@ -70,7 +73,7 @@ Route::get('/data/rt', 'DataRtController@getDataRt');
 //Routing Fetch Data KK
 Route::get('/data/kk', 'DataKkController@getDataKk');
 //routing fetch data keluarga
-Route::get('/data/k', 'DataKkController@getDataK');
+Route::get('/data/k', 'KeluargaController@getDataK');
 
 
 /*
@@ -97,7 +100,7 @@ Route::get('hapus/k/{id}', 'KeluargaController@hapusK');
 */
 Route::get('/rt/{id}', [DataRtController::class, 'showRtDetail'])->name('rt.detail');
 Route::get('/kk/{id}', [DataKkController::class, 'showKkDetail'])->name('kk.detail');
-Route::get('/k/{id}', [KeluargaController::class, 'showKkDetail'])->name('k.detail');
+Route::get('/k/{id}', [KeluargaController::class, 'showKeluargaDetail'])->name('k.detail');
 
 //=============================================================================//
 //SELESAI
@@ -118,3 +121,38 @@ Route::post('edit/pengumuman', 'PengumumanController@editDataPengumuman');
 Route::get('hapus/pengumuman/{id}', 'PengumumanController@hapusPengumuman');
 //Detail Pengumuman
 Route::get('/pengumuman/{id}', [PengumumanController::class, 'showPengumumanDetail'])->name('pengumuman.detail');
+
+
+//=============================================================================//
+//PENGADUAN
+//=============================================================================//
+Route::get('/pengaduan', [PengaduanController::class, 'index'])
+    ->name('pengaduan')
+    ->middleware('auth', 'warga');
+
+Route::get('/pengaduan/create', [PengaduanController::class, 'create'])
+    ->name('buat_pengaduan')
+    ->middleware('auth');
+
+Route::post('/pengaduan/store', [PengaduanController::class, 'store'])
+    ->name('store_pengaduan')
+    ->middleware('auth');
+
+Route::get('hapus/pengaduan/{id}', [PengaduanController::class, 'hapusPengaduan'])
+    ->name('hapus_pengaduan')
+    ->middleware('auth');
+
+Route::get('/admin/pengaduan', [PengaduanController::class, 'adminIndex'])
+    ->name('pengaduan_admin')
+    ->middleware('auth', 'admin');
+
+Route::get('/pengaduan/{id}', [PengaduanController::class, 'showPengaduanDetail'])
+    ->name('pengaduan_detail');
+
+Route::get('tanggapan/{id}', [TanggapanController::class, 'show'])->name('tanggapan.show');
+
+// Menyimpan tanggapan
+Route::post('tanggapan/store', [TanggapanController::class, 'store'])->name('tanggapan.store');
+
+// Contoh di dalam file web.php
+Route::get('tanggapan/{id}', 'TanggapanController@show')->name('tanggapan.show');

@@ -1,7 +1,7 @@
 <!--Modal Edit Data Keluarga / Warga-->
 <div class="iziModal" id="modal-editkeluarga" data-iziModal-title="Edit Data Keluarga">
 	<div class="p-3">
-		<form class="form-group" method="post" action="{{url('edit/k')}}">
+		<form class="form-group" method="post" action="{{url('/edit/k')}}">
 			@csrf
 			<div class="form-group">
 				<label class="form-label">Nama Lengkap</label>
