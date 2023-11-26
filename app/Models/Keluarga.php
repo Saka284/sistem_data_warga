@@ -9,4 +9,6 @@ class Keluarga extends Model
 {
     use HasFactory;
     protected $table = 'keluargas';
+
+    
 }

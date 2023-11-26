@@ -24,7 +24,7 @@ class CreateKeluargasTable extends Migration
             $table->string('status_perkawinan');
             $table->string('pekerjaan');
             $table->string('kewarganegaraan');
-            $table->integer('kepala_keluarga_id');
+            $table->integer('kepala_keluarga_id');  
             $table->timestamps();
         });
     }
