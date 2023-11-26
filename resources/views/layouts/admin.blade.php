@@ -11,15 +11,16 @@
 
     <title>{{ config('SIWARGA', 'SIWARGA') }}</title>
 
-    <!-- Fonts -->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('css/iziModal.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/iziModal.min.css')}}">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     
+    
+
     <script></script>
 
     <!-- Favicon -->
@@ -59,29 +60,32 @@
         </div>
 
         <!-- Nav Item - Profile -->
-        <li class="nav-item {{ Nav::isRoute('profile') }}">
-            <a class="nav-link collapsed" href="{{ route('profile') }}" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-database"></i>
-                <span>{{ __('Data Warga') }}</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data:</h6>
-                    <a class="collapse-item" href="{{ route('rt') }}">RT</a>
-                    <a class="collapse-item" href="{{ route('kk')}}">Kepala Keluarga</a>
+        @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
+            <!-- Tampilkan menu admin -->
+            <li class="nav-item {{ Nav::isRoute('profile') }}">
+                <a class="nav-link collapsed" href="{{ route('profile') }}" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-database"></i>
+                    <span>{{ __('Data Warga') }}</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Data:</h6>
+                        <a class="collapse-item" href="{{ route('rt') }}">RT</a>
+                        <a class="collapse-item" href="{{ route('kk')}}">Kepala Keluarga</a>
+                    </div>
                 </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - About -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
+            </li>
+        @endif
+        @if(auth()->user() && (auth()->user()->role == 'admin'))
+        <!-- Nav Item - Pengumuman -->
+        <li class="nav-item {{ Nav::isRoute('pengumuman') }}">
+            <a class="nav-link" href="{{ route('pengumuman') }}">
                 <i class="fas fa-fw fa-bullhorn"></i>
                 <span>{{ __('Pengumuman') }}</span>
             </a>
         </li>
-
+        @endif
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">
                 <i class="fas fa-fw fa-comment"></i>
@@ -89,19 +93,22 @@
             </a>
         </li>
 
+        @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">
                 <i class="fas fa-fw fa-male"></i>
                 <span>{{ __('Tamu') }}</span>
             </a>
         </li>
-
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
-                <i class="fas fa-fw fa-plus"></i>
-                <span>{{ __('Tambah Akun') }}</span>
-            </a>
-        </li>
+        @endif
+        @if(auth()->check() && auth()->user()->role == 'admin')
+            <li class="nav-item {{ Nav::isRoute('about') }}">
+                <a class="nav-link" href="{{ route('about') }}">
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>{{ __('Tambah Akun') }}</span>
+                </a>
+            </li>
+        @endif
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -248,21 +255,15 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{url('assets/js/iziModal.js')}}"></script>
-    <script type="text/javascript" src="{{url('js/iziModal.min.js')}}"></script>
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <script>
-        let table = new DataTable('#dataTable');
-    </script>
-
-    @include('modal.admin-modal')
-    @include('modal.edit-modal')
-
+    <script type="text/javascript" src="{{url('js/iziModal.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/iziModal.min.js')}}"></script>
+    <script src="{{asset('js/warga.js')}}"></script>
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script>
 </body>
 </html>
