@@ -10,13 +10,10 @@
 			</div>
 			<div class="form-group">
 				<label class="form-label">Kepala Keluarga</label>
-				<select class="form-control" name="kepala_keluarga_id">
-					@foreach($KK as $kepalaKeluarga)
-						<option value="{{$kepalaKeluarga->id}}">{{$kepalaKeluarga->nama_lengkap}}</option>
-					@endforeach
-				</select>
+				<input type="text" class="form-control" value="{{ $kepalaKeluarga->nama_lengkap }}" disabled>
+				<input type="hidden" name="kepala_keluarga_id" value="{{ $kepalaKeluarga->id }}">
 				<small class="text-secondary">Dibutuhkan *</small>
-			</div>
+			</div>			
 			
 			<div class="form-group">
 				<label class="form-label">No NIK</label>
@@ -108,7 +105,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="float-right">
-				<div class="btn-group">
+				<div>
 					<button class="btn btn-danger btn-sm" id="next">Hapus</button>
 					<button class="btn btn-secondary btn-sm" id="cancel">Batal</button>
 				</div>

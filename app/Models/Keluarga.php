@@ -22,4 +22,10 @@ class Keluarga extends Model
         'kewarganegaraan',
         'kepala_keluarga_id',
     ];
+
+    // In Keluarga model
+    public function headOfFamily()
+    {
+        return $this->belongsTo(KK::class, 'kepala_keluarga_id');
+    }
 }

@@ -24,29 +24,29 @@
         </div>
     @endif
     @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
-    <div class="row mb-4"> <!-- Add margin-bottom to create space -->
-        <div class="col-lg-3 mt-1">
-            <div class="bg-primary text-light p-2 rounded-lg shadow shadow-sm text-center">
-                <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($RT)->count() ?? 0 }} RT</h2>
-                <a href="" class="btn btn-light btn-block btn-sm">Export Excel</a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 mt-1">
-            <div class="bg-warning text-light p-2 rounded-lg shadow shadow-sm text-center">
-                <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($KK)->count() ?? 0 }} KK</h2>
-                <a href="" class="btn btn-light btn-block btn-sm">Export Excel</a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 mt-1">
-            <div class="bg-info text-light p-2 rounded-lg shadow shadow-sm text-center border">
-                <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($K)->count() ?? 0 }} W</h2>
-                <a href="" class="btn btn-light btn-block btn-sm">Export Excel</a>
-            </div>
+<div class="row mb-4">
+    <div class="col-lg-3 mt-1">
+        <div class="bg-primary text-light p-2 rounded-lg shadow shadow-sm text-center">
+            <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($RT)->count() ?? 0 }} RT</h2>
+            <a href="{{ route('export.rt') }}" class="btn btn-light btn-block btn-sm">Export Excel</a>
         </div>
     </div>
-    @endif
+
+    <div class="col-lg-3 mt-1">
+        <div class="bg-warning text-light p-2 rounded-lg shadow shadow-sm text-center">
+            <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($KK)->count() ?? 0 }} KK</h2>
+            <a href="{{ route('export.kk') }}" class="btn btn-light btn-block btn-sm">Export Excel</a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 mt-1">
+        <div class="bg-info text-light p-2 rounded-lg shadow shadow-sm text-center border">
+            <h2 class="display-4 mb-0 font-weight-bolder">{{ optional($K)->count() ?? 0 }} W</h2>
+            <a href="{{ route('export.k') }}" class="btn btn-light btn-block btn-sm">Export Excel</a>
+        </div>
+    </div>
+</div>
+@endif
     <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-default">
             <div class="card-header card-header-border-bottom" style="border-bottom: 2px solid #007bff; padding-bottom: 20px;">

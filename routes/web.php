@@ -8,9 +8,14 @@ use App\Http\Controllers\DataRtController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\tamuController;
 use App\Http\Controllers\TanggapanController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\userController;
 use App\Models\Keluarga;
 use App\Models\Pengumuman;
+
+use function App\Http\Controllers\tambahUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +58,8 @@ Route::get('/about', function () {
 Route::get('/rt', 'DataRtController@index')->name('rt');
 Route::get('/kk', 'DataKkController@index')->name('kk');
 Route::get('/keluarga', 'KeluargaController@index')->name('keluarga');
-Route::get('/tamu', 'tamuController@index');
+Route::get('/kepala-keluarga/{id}/anggota', 'KeluargaController@anggotaKeluarga')->name('kepala-keluarga.anggota');
+
 
 /*
     ROUTE TAMBAH DATA WARGA
@@ -101,6 +107,12 @@ Route::get('hapus/k/{id}', 'KeluargaController@hapusK');
 Route::get('/rt/{id}', [DataRtController::class, 'showRtDetail'])->name('rt.detail');
 Route::get('/kk/{id}', [DataKkController::class, 'showKkDetail'])->name('kk.detail');
 Route::get('/k/{id}', [KeluargaController::class, 'showKeluargaDetail'])->name('k.detail');
+
+// web.php
+
+Route::get('/kk/{id}/anggota', 'DataKkController@showAnggotaKeluarga')->name('kk.anggota');
+
+
 
 //=============================================================================//
 //SELESAI
@@ -156,3 +168,27 @@ Route::post('tanggapan/store', [TanggapanController::class, 'store'])->name('tan
 
 // Contoh di dalam file web.php
 Route::get('tanggapan/{id}', 'TanggapanController@show')->name('tanggapan.show');
+
+
+//=============================================================================//
+//TAMU
+//=============================================================================//
+Route::get('/tamu', 'tamuController@index')->name('tamu');
+Route::post('/tambah/tamu', 'tamuController@tambahTamu');
+Route::get('/hapus/tamu/{id}', 'tamuController@hapusTamu');
+Route::get('/tamu/{id}', [tamuController::class, 'showTamuDetail'])->name('tamu.detail');
+Route::get('/update-status-tamu/{id}', 'TamuController@updateStatus')->name('tamu.updateStatus');
+
+//===============================================================================//
+//Tambah Akun
+//===============================================================================//
+Route::get('/user', 'userController@index')->name('user');
+Route::get('/user/halamanAkun', 'userController@halamanTambahAkun')->name('halaman_TambahAkun');
+Route::post('/user/tambah', 'userController@tambahUser')->name('tambah_user');
+Route::get('/hapus/akun/{id}', 'userController@hapusUser');
+Route::get('/reset-password/{id}', 'UserController@resetPassword');
+
+//EXPORT EXCEL
+Route::get('/export/rt', [HomeController::class, 'exportRT'])->name('export.rt');
+Route::get('/export/kk', [HomeController::class, 'exportKK'])->name('export.kk');
+Route::get('/export/k', [HomeController::class, 'exportK'])->name('export.k');

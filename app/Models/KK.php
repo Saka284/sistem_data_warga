@@ -23,4 +23,14 @@ class KK extends Model
         'kewarganegaraan',
         'rt_id',
     ];
+    public function members()
+    {
+        return $this->hasMany(Keluarga::class, 'kepala_keluarga_id');
+    }
+    // KK.php (Model KK)
+
+    public function anggotaKeluarga()
+    {
+        return $this->hasMany(Keluarga::class, 'kepala_keluarga_id');
+    }
 }

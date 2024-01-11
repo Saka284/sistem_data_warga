@@ -25,7 +25,7 @@ class TanggapanController extends Controller
         $data['petugas_id'] = $petugas_id;
 
         Tanggapan::create($data);
-        return redirect()->route('pengaduan_detail', ['id' => $request->pengaduan_id])->with('success', 'Pengaduan berhasil disimpan!');
+        return redirect()->route('pengaduan_detail', ['id' => $request->pengaduan_id])->with('success', 'Tanggapan berhasil ditambahkan!');
     }
 
     public function show($id)

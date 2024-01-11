@@ -6,24 +6,24 @@
             <div class="card-body">
                 <h2 class="card-title text-center" style="font-weight: bold">Form Laporan</h2>
 
-                @if (session('success'))
-                    <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert" id="success-alert">
-                        {{ session('success') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+            @if (session('success'))
+                <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert" id="success-alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
 
-                @if ($errors->any())
-                    <div class="alert alert-danger border-left-danger" role="alert" id="error-alert">
-                        <ul class="pl-4 my-2">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+            @if ($errors->any())
+                <div class="alert alert-danger border-left-danger" role="alert" id="error-alert">
+                    <ul class="pl-4 my-2">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
                 <form action="{{ route('store_pengaduan') }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -46,7 +46,7 @@
                     </div>
                     
                     <div class="text-center mt-4">
-                        <a style="width: 100%" type="back" class="btn btn-primary btn-lg" href="{{ url()->previous() }}">
+                        <a style="width: 100%" type="submit" class="btn btn-primary btn-lg" href="{{ url()->previous() }}">
                             Kembali ke halaman utama
                         </a>
                     </div>

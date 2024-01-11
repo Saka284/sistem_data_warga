@@ -123,7 +123,7 @@
 		</div>
 		<div class="clearfix">
 			<div class="float-right">
-				<div class="btn-group">
+				<div>
 					<button class="btn btn-danger btn-sm" id="next">Hapus</button>
 					<button class="btn btn-secondary btn-sm" id="cancel">Batal</button>
 				</div>
