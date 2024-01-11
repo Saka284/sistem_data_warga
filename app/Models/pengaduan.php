@@ -12,6 +12,7 @@ class pengaduan extends Model
 
     protected $fillable = ['name', 'user_id', 'description', 'nomer_telp', 'image', 'status'];
 
+
     // Relasi dengan User
     public function user()
     {
@@ -31,5 +32,9 @@ class pengaduan extends Model
     public function tanggapans()
     {
         return $this->belongsTo(Pengaduan::class, 'id', 'id');
+    }
+    public function status()
+    {
+        return $this->belongsTo(Tanggapan::class, 'status_id', 'status');
     }
 }

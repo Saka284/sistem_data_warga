@@ -63,7 +63,7 @@
                             @foreach($KK as $kkeluarga)
                             <tr>
                                 <td>
-                                    <a href="{{ route('keluarga', ['id' => $kkeluarga->id]) }}">
+                                    <a href="{{ route('kepala-keluarga.anggota', ['id' => $kkeluarga->id]) }}">
                                         {{ $kkeluarga->nama_lengkap }}
                                     </a>
                                 </td>

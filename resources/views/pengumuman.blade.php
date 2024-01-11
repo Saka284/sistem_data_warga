@@ -50,7 +50,8 @@
                             <tr>
                                     <td>{{ $pengumuman->judul_pengumuman }}</td>
                                     <td>{{ $pengumuman->isi_pengumuman }}</td>
-                                    <td>{{ $pengumuman->tgl_pengumuman }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($pengumuman->tgl_pengumuman)->format('d-m-Y') }}</td>
+
                                 <td>
                                     <div class="btn-group d-flex justify-content-center">
                                         <button class="btn btn-sm btn-primary" data-id="{{$pengumuman->id}}" onclick="editPengumuman(this)">Edit</button>

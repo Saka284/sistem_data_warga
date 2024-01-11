@@ -25,24 +25,27 @@
 
     <div class="container-fluid">
         <!-- Page Heading -->   
-        <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold">{{ __('Data Anggota Keluarga') }}</h1>
+        <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold">Anggota Keluarga {{ $kepalaKeluarga->nama_lengkap }}</h1>
         @if(auth()->user() && auth()->user()->role == 'admin')
-        <button class="btn btn-sm btn-primary my-2" onclick="tambahKeluarga()">Tambah Anggota Keluarga</button>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <button class="btn btn-sm btn-primary" onclick="tambahKeluarga()">Tambah Anggota Keluarga</button>
+            <a href="{{ route('kk') }}" class="btn btn-sm btn-secondary">Back</a>
+        </div>
         @endif
         <!-- Page Heading -->
 
         <!-- DataTales Example -->
+        
         <div class="card shadow mb-4">
             <div class="card-body">
-                @if($K->count() > 0)
+                @if($anggotaKeluarga->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm" id="KTable">
                         <thead>
                             <tr>
                                 <th>
                                     Nama Lengkap
-                                </th>
-                         
+                                </th>            
                                 <th>
                                     Kepala Keluarga
                                 </th>
@@ -64,7 +67,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($K as $dataWarga)
+                            @foreach($anggotaKeluarga as $dataWarga)
                             <tr>
                                 <td>
                                     {{$dataWarga->nama_lengkap}}

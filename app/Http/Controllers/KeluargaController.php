@@ -15,12 +15,31 @@ class KeluargaController extends Controller
         $KK = KK::get();
         $K = Keluarga::get();
 
-        return view('data_warga.keluarga_view', [
+        return view('', [
             'RT' => $RT,
             'KK' => $KK,
             'K' => $K,
         ]);
     }
+
+    public function anggotaKeluarga($id)
+    {
+        // Ambil data kepala keluarga berdasarkan ID
+        $kepalaKeluarga = KK::find($id);
+
+        // Ambil anggota keluarga berdasarkan ID kepala keluarga
+        $anggotaKeluarga = Keluarga::where('kepala_keluarga_id', $id)->get();
+
+        // Inisialisasi data kepala keluarga untuk dropdown
+        $KK = KK::all();
+
+        return view('data_warga.keluarga_view', [
+            'kepalaKeluarga' => $kepalaKeluarga,
+            'anggotaKeluarga' => $anggotaKeluarga,
+            'KK' => $KK,
+        ]);
+    }
+
 
     function tambahKeluarga(Request $request)
     {
@@ -75,7 +94,7 @@ class KeluargaController extends Controller
         $this->validate($request, [
             'id' => 'required|integer'
         ]);
-
+        $data = KK::where('id', $id)->get();
         $data = Keluarga::where('id', $id)->get();
 
         return $data;
@@ -130,10 +149,10 @@ class KeluargaController extends Controller
 
     public function showKeluargaDetail($id)
     {
-
+        $KK = KK::get();
         $k = Keluarga::find($id);
 
         // Return the RT detail view with the RT data
-        return view('detail.detail_keluarga', compact('k'));
+        return view('detail.detail_keluarga', compact('k', 'KK'));
     }
 }

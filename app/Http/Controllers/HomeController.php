@@ -8,6 +8,10 @@ use App\Models\RT;
 use App\Models\Keluarga;
 use App\Models\KK;
 use App\Models\Pengumuman;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RTExport;
+use App\Exports\KKExport;
+use App\Exports\KExport;
 
 class HomeController extends Controller
 {
@@ -58,5 +62,20 @@ class HomeController extends Controller
 
         // Return the RT detail view with the RT data
         return view('detail.detail_pengumuman', compact('pengumumans'));
+    }
+
+    public function exportRT()
+    {
+        return Excel::download(new RTExport, 'rt_data.xlsx');
+    }
+
+    public function exportKK()
+    {
+        return Excel::download(new KKExport, 'kk_data.xlsx');
+    }
+
+    public function exportK()
+    {
+        return Excel::download(new KExport, 'k_data.xlsx');
     }
 }

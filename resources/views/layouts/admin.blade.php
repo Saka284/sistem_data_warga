@@ -34,12 +34,12 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-        </a>
+            <div class="sidebar-brand-text mx-3">SiWarga</div>
+        </div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -104,16 +104,16 @@
         </li>
         @endif
         @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
+        <li class="nav-item {{ Nav::isRoute('tamu') }}">
+            <a class="nav-link" href="{{ route('tamu') }}">
                 <i class="fas fa-fw fa-male"></i>
                 <span>{{ __('Tamu') }}</span>
             </a>
         </li>
         @endif
         @if(auth()->check() && auth()->user()->role == 'admin')
-            <li class="nav-item {{ Nav::isRoute('about') }}">
-                <a class="nav-link" href="{{ route('about') }}">
+            <li class="nav-item {{ Nav::isRoute('user') }}">
+                <a class="nav-link" href="{{ route('user') }}">
                     <i class="fas fa-fw fa-plus"></i>
                     <span>{{ __('Tambah Akun') }}</span>
                 </a>

@@ -63,9 +63,7 @@
                                     </p>
                                     @endif
                     <p>{{ $pengaduan->description }}</p>
-                    
-                    <!-- Display image -->
-                    <img src="{{ asset('storage/' . $pengaduan->image) }}" style="max-width: 100%; height: auto;">
+                    <img src="{{ asset('storage/' . $pengaduan->image) }}" alt="Pengaduan Image" style="max-width: 50%; height: auto;">
                 </div>
             </div>
 
@@ -73,23 +71,28 @@
         </div>
     </div>
     <!-- Tampilan tanggapan -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="px-4 py-3 mb-8 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">
-                <div class="text-center flex-1">
-                    <h1 class="mb-8 font-semibold" style="color: black">Tanggapan</h1>
-                    <br>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="px-4 py-3 mb-8 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">
+            <div class="text-center flex-1">
+                <h1 class="mb-8 font-semibold" style="color: black">Tanggapan</h1>
+                
+                @if ($tangap->isEmpty())
                     <p class="text-black-800 dark:text-black-400" style="font-weight: bold">
-                        @if (empty($tangap->tanggapan))
-                            Aduan belum ditanggapi
-                        @else
-                            {{ $tangap->tanggapan }}
-                        @endif
+                        Aduan belum ditanggapi
                     </p>
-                </div>
+                @else
+                    @foreach ($tangap as $tangapan)
+                        <p class="text-black-800 dark:text-black-400" style="font-weight: bold">
+                            {{ $tangapan->tanggapan }}
+                        </p>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
+</div>
+
 
     <div class="flex justify-center my-6 mx-auto">
         @if(auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'satpam'))

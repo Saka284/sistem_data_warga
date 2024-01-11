@@ -32,15 +32,16 @@
                 <label for="tanggapan">Isi Tanggapan Anda<span style="color: red;">*</span></label>
                 <textarea class="form-control" id="tanggapan" name="tanggapan" placeholder="Isi tanggapan Anda" rows="8" required></textarea>
             </div>
-
+            
             <div class="form-group">
                 <label for="status">Status<span style="color: red;">*</span></label>
                 <select class="form-control" id="status" name="status" required>
-                    <option value="Belum di Proses">Belum di Proses</option>
-                    <option value="Sedang di Proses">Sedang di Proses</option>
-                    <option value="Selesai">Selesai</option>
+                    <option value="Belum di Proses" {{ $item->status == 'Belum di Proses' ? 'selected' : '' }}>Belum di Proses</option>
+                    <option value="Sedang di Proses" {{ $item->status == 'Sedang di Proses' ? 'selected' : '' }}>Sedang di Proses</option>
+                    <option value="Selesai" {{ $item->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                 </select>
-            </div>
+            </div>            
+            
 
             <div class="text-center mt-4">
                 <button style="width: 100%" type="submit" class="btn btn-danger btn-lg">Tanggapi</button>

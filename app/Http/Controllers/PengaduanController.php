@@ -36,7 +36,8 @@ class PengaduanController extends Controller
         ]);
 
         // Simpan pengaduan
-        $imagePath = $request->file('image')->store('pengaduan');
+        $imagePath = $request->file('image')->store('pengaduan', 'public');
+
         Pengaduan::create([
             'name' => auth()->user()->name,
             'user_id' => auth()->id(),
@@ -66,7 +67,7 @@ class PengaduanController extends Controller
             'details', 'user'
         ])->findOrFail($id);
 
-        $tangap = Tanggapan::where('pengaduan_id', $id)->first();
+        $tangap = Tanggapan::where('pengaduan_id', $id)->get();
 
         return view('detail.detail_aduan', [
             'pengaduan' => $pengaduan,

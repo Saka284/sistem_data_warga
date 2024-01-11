@@ -18,4 +18,14 @@ class tanggapan extends Model
     {
         return $this->hasOne(Pengaduan::class, 'id', 'id');
     }
+
+    public function proses()
+    {
+        return $this->hasMany(Pengaduan::class, 'status_id', 'status');
+    }
+
+    public function country()
+    {
+        return $this->hasOne(Pengaduan::class);
+    }
 }

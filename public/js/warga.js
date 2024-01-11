@@ -47,6 +47,15 @@ function tambahPengumuman() {
 	modal.iziModal('setTransitionIn', 'fadeInUp');
 	modal.iziModal('setTransitionOut', 'fadeOutDown');
 }
+//tambah Tamu
+function tambahTamu() {
+	var modal = $("#modal-tambahtamu");
+	modal.iziModal();
+	modal.iziModal('open');
+	modal.iziModal('setHeaderColor', '#0077FF');
+	modal.iziModal('setTransitionIn', 'fadeInUp');
+	modal.iziModal('setTransitionOut', 'fadeOutDown');
+}
 
 //fungsi edit pengumuman
 function editPengumuman(dataid) {
@@ -175,7 +184,7 @@ function editDataKeluarga(dataid) {
 	var namaLengkap = $("input[name=nama_lengkap]");
 	var kepalaKeluarga = $("select[name=kepala_keluarga_id]");
 	var noNik = $("input[name=no_nik]");
-	var ttl = $("input[name=ttl]");	
+	var ttl = $("input[name=ttl]");
 	var jenisKelamin = $("select[name=jenis_kelamin]");
 	var golonganDarah = $("select[name=golongan_darah]");
 	var agama = $("select[name=agama]");
@@ -213,6 +222,48 @@ function hapusData(dataid) {
 
 	var cancel = $("#cancel");
 	var next = $("#next");
+
+	cancel.click(function () {
+		modal.iziModal('close');
+	});
+
+	next.click(function () {
+		window.location.href = url;
+	});
+}
+
+function editStatusTamu(dataid) {
+	var url = dataid.getAttribute('data-url');
+	var modal = $("#modal-statustamu");
+	modal.iziModal();
+	modal.iziModal('open');
+	modal.iziModal('setHeaderColor', '#4E73DF');
+	modal.iziModal('setTransitionIn', 'fadeInUp');
+	modal.iziModal('setTransitionOut', 'fadeOutDown');
+
+	var cancel = $("#batal");
+	var next = $("#oke");
+
+	cancel.click(function () {
+		modal.iziModal('close');
+	});
+
+	next.click(function () {
+		window.location.href = url;
+	});
+}
+
+function resetPassword(dataid) {
+	var url = dataid.getAttribute('data-url');
+	var modal = $("#modal-resetpassword");
+	modal.iziModal();
+	modal.iziModal('open');
+	modal.iziModal('setHeaderColor', '#4E73DF');
+	modal.iziModal('setTransitionIn', 'fadeInUp');
+	modal.iziModal('setTransitionOut', 'fadeOutDown');
+
+	var cancel = $("#batal");
+	var next = $("#oke");
 
 	cancel.click(function () {
 		modal.iziModal('close');
