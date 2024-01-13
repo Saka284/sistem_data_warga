@@ -148,7 +148,7 @@ class DataKkController extends Controller
         ]);
 
         if ($data) {
-            return back()->with('success', 'Data updated successfully.');
+            return back()->with('success', 'Data berhasil diupdate');
         } else {
             return back()->withErrors(['error' => 'Error ketika menginput data ke database!']);
         }

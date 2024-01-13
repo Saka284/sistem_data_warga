@@ -43,17 +43,18 @@ class HomeController extends Controller
             //... other widget data
         ];
 
-        $pengumumans = Pengumuman::latest()->take(1)->get(); // Get the latest announcement
+        $pengumumans = Pengumuman::get(); // Get the latest announcement
 
         return view('home', compact('RT', 'KK', 'K', 'widget', 'pengumumans'));
     }
 
     public function showHomePage()
     {
-        $pengumumans = Pengumuman::latest()->take(1)->get(); // Get the latest announcement
+        $pengumumans = Pengumuman::latest()->get(); // Get all announcements, ordered by the latest first
 
         return view('home', compact('pengumumans'));
     }
+
 
     public function showPengumumanDetail($id)
     {

@@ -93,9 +93,6 @@ Route::post('/edit/kk', 'DataKkController@editDataKk');
 Route::post('/edit/k', 'KeluargaController@editDataKeluarga');
 
 
-/*
-    ROUTE HAPUS DATA WARGA
-*/
 //Routing hapus RT
 Route::get('hapus/rt/{id}', 'DataRtController@hapusRt');
 Route::get('hapus/kk/{id}', 'DataKkController@hapusKk');
