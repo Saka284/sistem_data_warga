@@ -76,9 +76,9 @@ class PengumumanController extends Controller
         ]);
 
         if ($data) {
-            return back()->with('success', 'Pengumuman updated successfully.');
+            return back()->with('success', 'Pengumuman berhasil diupdate');
         } else {
-            return back()->withErrors(['error' => 'Error while updating data in the database!']);
+            return back()->withErrors(['error' => 'Error ketika update data di database!']);
         }
     }
 
@@ -94,7 +94,7 @@ class PengumumanController extends Controller
 
     public function showHomePage()
     {
-        $pengumumans = Pengumuman::latest()->take(1)->get(); // Get the latest announcement
+        $pengumumans = Pengumuman::latest()->get();
 
         return view('home', compact('pengumumans'));
     }

@@ -26,7 +26,7 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800" style="font-weight: bold">{{ __('Laporan Tamu') }}</h1>
-        @if(auth()->user() && auth()->user()->role == 'admin')
+        @if(auth()->user() && auth()->user()->role == 'admin' || auth()->user()->role == 'satpam')
         <button class="btn btn-sm btn-primary my-2" onclick="tambahTamu()">Tambah Tamu</button>
         @endif
         <!-- DataTales Example -->

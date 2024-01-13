@@ -1,7 +1,6 @@
 @section('main-content')
 @extends('layouts.admin')
 @include('modal.keluarga-modal')
-@include('modal.edit-keluarga-modal')
 
 
     @if (session('success'))
@@ -29,7 +28,7 @@
         @if(auth()->user() && auth()->user()->role == 'admin')
         <div class="d-flex justify-content-between align-items-center mb-2">
             <button class="btn btn-sm btn-primary" onclick="tambahKeluarga()">Tambah Anggota Keluarga</button>
-            <a href="{{ route('kk') }}" class="btn btn-sm btn-secondary">Back</a>
+            <a href="{{ route('kk') }}" class="btn btn-sm btn-secondary">Kembali</a>
         </div>
         @endif
         <!-- Page Heading -->

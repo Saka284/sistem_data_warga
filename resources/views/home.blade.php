@@ -47,36 +47,41 @@
     </div>
 </div>
 @endif
-    <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="card card-default">
-            <div class="card-header card-header-border-bottom" style="border-bottom: 2px solid #007bff; padding-bottom: 20px;">
-                <h1 class="h3 text-gray-800" style="font-weight: bold; margin: 0;">{{ __('Pengumuman') }}</h1>
-            </div>
-            
-            <div class="card-body">
-                @if($pengumumans->count() > 0)
-                    @php
-                        $latestPengumuman = $pengumumans->first(); // Assuming you're retrieving the latest announcement
-                    @endphp
-                    <h5 class="card-title text-primary">{{ $latestPengumuman->judul_pengumuman }}</h5>
-                    <p class="card-text pb-3">{{ $latestPengumuman->isi_pengumuman }}</p>
-                    <p class="card-text">
-                        <small class="text-muted">{{ $latestPengumuman->tgl_pengumuman }}</small>
-                    </p>
-                    @foreach($pengumumans as $pengumuman)
-                        <a href="{{ route('pengumuman.detail', ['id' => $pengumuman->id]) }}" type="button" class="btn btn-primary mt-4" data-toggle="modals">
-                            Lihat
-                        </a>
-                    @endforeach
-
-                @else
-                    <div class="alert alert-info" role="alert">
-                        <strong>No Pengumuman available.</strong>
+   <div class="row">
+    @if($pengumumans->count() > 0)
+        @foreach($pengumumans->chunk(ceil($pengumumans->count() / 100)) as $column)
+            {{-- Column --}}
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card card-default mb-4">
+                    <div class="card-header card-header-border-bottom" style="border-bottom: 2px solid #007bff; padding-bottom: 20px;">
+                        <h1 class="h3 text-gray-800" style="font-weight: bold; margin: 0;">{{ __('Pengumuman') }}</h1>
                     </div>
-                @endif
+
+                    <div class="card-body">
+                        @foreach($column as $pengumuman)
+                            <h5 class="card-title text-primary">{{ $pengumuman->judul_pengumuman }}</h5>
+                            <p class="card-text pb-3">{{ $pengumuman->isi_pengumuman }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ $pengumuman->tgl_pengumuman }}</small>
+                            </p>
+                            <a href="{{ route('pengumuman.detail', ['id' => $pengumuman->id]) }}" type="button" class="btn btn-primary mt-4" data-toggle="modals">
+                                Lihat
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <div class="col-lg-12">
+            <div class="alert alert-info" role="alert">
+                <strong>No Pengumuman available.</strong>
             </div>
         </div>
-    </div>
+    @endif
+</div>
+
+
     
     <script>
         // Auto-hide success alert after 2 seconds

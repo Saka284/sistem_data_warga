@@ -194,7 +194,7 @@ function editDataKeluarga(dataid) {
 	var data_id = $("input[name=id]");
 
 	modal.iziModal('startLoading');
-	$.get('data/k', { id: id }, function (response) {
+	$.get('/data/k', { id: id }, function (response) {
 		modal.iziModal('stopLoading');
 
 		namaLengkap.val(response[0].nama_lengkap);
