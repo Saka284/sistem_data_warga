@@ -1,6 +1,4 @@
-==================================================================
-===========Website Sistem Data dan Laporan Warga============
-==================================================================
+Website Sistem Data dan Laporan Warga
 Laravel-Framework
 User: Admin, Satpam, Warga.
 Terdiri dari beberapa Fitur:
@@ -9,4 +7,4 @@ Terdiri dari beberapa Fitur:
 💎Fitur Pengumuman Warga
 💎Fitur Tamu yang Masuk (Untuk Role Satpam)
 💎Fitur Tambah Akun
-================THANK YOU=========================================
+
